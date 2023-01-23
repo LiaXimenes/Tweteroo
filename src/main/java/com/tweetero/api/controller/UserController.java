@@ -27,7 +27,7 @@ public class UserController {
     public ResponseEntity<String> createUser(@RequestBody @Valid UserDTO req){
         List<User> userExists = service.findUserByName(req.userName());
         
-        if(userExists.isEmpty()){
+        if(!userExists.isEmpty()){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
         }
 
